@@ -1,0 +1,98 @@
+%% References
+%% https://alexanderfabisch.github.io/latex-for-dissertations.html
+
+\documentclass[
+    draft=false,
+    paper=a4,
+    % twoside, % twoside is default for scrbook
+    paper=portrait,
+    pagesize=auto,
+    fontsize=11pt,
+    DIV=calc, % DIV value as calculated from paper and font size
+    BCOR=15mm, % binding correction
+    titlepage=firstiscover, % print title page as cover
+    version=last,
+    headings=twolinechapter,
+    listof=totoc,
+    listof=chapterentry]{scrbook}
+
+\setkomafont{disposition}{\rmfamily\scshape}
+\usepackage{libertinus}
+
+\usepackage{scrhack} % fix a few common issues with KOMA-classes
+
+
+% Citation Management
+\usepackage[
+    style=authoryear-comp, % citation style
+    natbib=true,
+    backend=biber,
+    maxnames=2,
+    maxbibnames=99]{biblatex}
+\addbibresource{literature.bib}
+
+% while drafting
+% \includeonly{chapters/introduction}
+
+\usepackage[ngerman, english]{babel} %last language in the list is the main language, in this case English (American)
+% font as needed for additional languages
+
+
+% CJK support
+\usepackage{xeCJK}
+\setCJKmainfont{Noto Serif CJK TC}
+\setCJKsansfont{Noto Sans CJK TC}
+
+
+% quotation style
+\usepackage[english=american]{csquotes}
+
+% FOR TESTING
+\usepackage{blindtext}
+% \usepackage{showframe}
+
+% other
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\begin{document}
+
+% title information
+\titlehead{{\Large Saarland University\\}
+    {Department of Language Science and Technology}\\
+    Faculty of Humanities}
+\subject{Bachelor/Master Thesis}
+\title{Thesis Title}
+\subtitle{Thesis Subtitle}
+\author{Coli Student}
+\date{30. February 2022}
+\publishers{Advisers: \\
+    Prof. Dr. First Advisor\\
+    Dr. Second Advisor\\
+    \vspace{4cm}
+    \includegraphics[height=2cm]{figures/UdS_Logo.pdf}}
+
+% Title page and front matter
+\frontmatter
+\maketitle
+\include{frontmatter/declaration}
+\include{frontmatter/acknowledgments}
+\include{frontmatter/abstract} 
+\tableofcontents
+
+\mainmatter
+\include{chapters/introduction}
+\include{chapters/motivation}
+
+\appendix
+\include{appendices/appendix_a}
+
+\backmatter
+
+% optional: list of figures, list of tables
+% \listoffigures
+% \listoftables
+
+\chapter{Bibliography}
+\printbibliography[heading=none]
+\end{document}
